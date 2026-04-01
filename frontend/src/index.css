@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap');
+
+:root {
+  --bg-main: #f5f5f0;
+  --bg-card: #000000;
+  --primary: #fd6511;
+  --secondary: #000000;
+  --accent: #fd6511;
+  --text-main: #000000;
+  --text-muted: #666660;
+  --text-inverse: #f5f5f0;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --grid-line: rgba(0, 0, 0, 0.05);
+  --blue-glow: rgba(0, 150, 255, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-main);
+  background-image: 
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 50px 50px;
+  color: var(--text-main);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Atmospheric Glow from the website */
+body::before, body::after {
+  content: '';
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 30vh;
+  z-index: -1;
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+body::before {
+  top: -10vh;
+  background: radial-gradient(circle, var(--blue-glow) 0%, transparent 70%);
+}
+
+body::after {
+  bottom: -10vh;
+  background: radial-gradient(circle, var(--blue-glow) 0%, transparent 70%);
+}
+
+h1, h2, h3 {
+  font-family: 'Syne', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+.stretched-text {
+  display: inline-block;
+  transform: scaleX(1.15);
+  transform-origin: left;
+  margin-right: 0.5rem; /* Add space for the horizontal expansion */
+}
+
+.logo-group {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.dashboard-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 280px 1fr 340px;
+  gap: 1.5rem;
+  height: 100vh;
+}
+
+/* Bento Modules */
+.glass {
+  background: white;
+  border: 1px solid var(--grid-line);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  border-radius: 20px;
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass:hover {
+  border-color: var(--primary);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Sidebar Styles */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sidebar .glass {
+    background: var(--bg-card);
+    border: none;
+    color: var(--text-inverse);
+}
+
+/* Pill Navigation */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: 100px;
+  cursor: pointer;
+  color: #888;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.nav-item:hover {
+    color: var(--text-inverse);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-item.active {
+  background: var(--primary);
+  color: white;
+}
+
+/* Call Cards - Dark/Contrast */
+.call-card.live {
+  background: var(--bg-card);
+  color: var(--text-inverse);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.status-badge {
+  padding: 0.4rem 1.25rem;
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.status-active {
+  background: #22c55e; /* Pulsing green from site */
+  color: black;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-active::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: black;
+  border-radius: 50%;
+  animation: pulse-dot 1s infinite alternate;
+}
+
+@keyframes pulse-dot {
+  from { opacity: 0.3; }
+  to { opacity: 1; }
+}
+
+.transcript-snippet {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #eee;
+  border-left: 4px solid var(--primary);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  font-weight: 500;
+}
+
+.lang-tag {
+  background: white;
+  color: black;
+  font-size: 0.65rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 100px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.live-feed {
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.live-feed::-webkit-scrollbar {
+    width: 4px;
+}
+
+.live-feed::-webkit-scrollbar-thumb {
+    background: var(--grid-line);
+    border-radius: 10px;
+}
+
+/* Typography for Logo */
+.logo-group h1 {
+  font-size: 2.2rem;
+  letter-spacing: -0.05em;
+  font-weight: 900;
+}
+
+.logo-group h1 span {
+    color: var(--primary);
+}
+
+/* Custom Outlined Text Effect like "language" on site */
+.outlined-text {
+  -webkit-text-stroke: 1px var(--text-main);
+  color: transparent;
+}
+
+button.action-btn {
+    background: var(--bg-card);
+    color: var(--text-inverse);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-family: 'Syne', sans-serif;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button.action-btn:hover {
+    transform: scale(1.05);
+    background: var(--primary);
+}
+
